@@ -1,0 +1,181 @@
+/* Container */
+#Inj_Speed_Grid .table-container {
+    overflow: hidden;
+    max-height: 100vh;
+    height: 35vh;
+    /* border: 1px solid darkblue; */
+    /* Fixed typo */
+}
+
+/* Scrollable wrapper */
+#Inj_Speed_Grid .table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    /* Enables horizontal scrolling */
+    overflow-y: auto;
+    /* Enables vertical scrolling */
+    max-height: 100vh;
+    height: 35vh;
+    /* Fixed typo */
+    /* Fixed height for vertical scrolling */
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+/* Table */
+#Inj_Speed_Grid .excel-table {
+    width: max-content;
+    border-collapse: collapse;
+    /* Make it look like Excel */
+}
+
+.excel-table td[contenteditable="true"] {
+    text-align: right;
+    /* Keeps text aligned to the right */
+    direction: ltr;
+    /* Ensures normal left-to-right typing */
+}
+
+.excel-table td:not([contenteditable="true"]) {
+    background-color: #d3d3d3;
+}
+
+/* Headers */
+.excel-table th {
+    background-color: #1b527b;
+    color: #fff;
+    /* Light gray, similar to Excel */
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #bfbfbf;
+    min-width: 20px;
+    /* Prevent shrinking */
+    max-width: fit-content;
+    position: relative;
+}
+
+/* Fix header at the top */
+.excel-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Table cells */
+.excel-table td {
+    border: 1px solid #d1d5db;
+    text-align: right;
+    padding: 1px;
+    min-width: 20px;
+    /* Ensure a minimum width */
+    max-width: fit-content;
+    background-color: white;
+    /* Default white background */
+    font-family: Arial, sans-serif;
+    /* Excel-like font */
+}
+
+/* Alternating row colors like Excel */
+.excel-table tbody tr:nth-child(odd) {
+    background-color: #f9fafb;
+}
+
+/* Selected cell styling */
+.excel-table td:focus {
+    outline: 2px solid #2563eb;
+    background-color: #eef2ff;
+}
+
+/* Column resizer */
+.excel-table .column-resizer {
+    position: absolute;
+    right: -3px;
+    top: 0;
+    width: 6px;
+    height: 100%;
+    cursor: col-resize;
+    background-color: transparent;
+    z-index: 10;
+}
+
+.excel-table .column-resizer:hover {
+    background-color: #aaa;
+}
+
+/* Drag selection highlight */
+.excel-table .selected {
+    background-color: #cce5ff !important;
+    /* Light blue selection */
+}
+
+.excel-table td[contenteditable="true"] {
+    text-align: right;
+    /* Keeps text aligned to the right */
+    direction: ltr;
+    /* Ensures normal left-to-right typing */
+}
+
+.excel-table td:not([contenteditable="true"]).selected {
+    background-color: #d3d3d3;
+}
+
+.excel-table .selected {
+    background-color: #cce5ff !important;
+    /* Light blue selection */
+}
+
+
+/* Container */
+#Shot_Grid .table-container {
+    overflow: hidden;
+    max-height: 100vh;
+    height: 35vh;
+    /* border: 1px solid darkblue; */
+    background-color: #e4eae1;
+    /* Fixed typo */
+}
+
+/* Scrollable wrapper */
+#Shot_Grid .table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    /* Enables horizontal scrolling */
+    overflow-y: auto;
+    /* Enables vertical scrolling */
+    max-height: 100vh;
+    height: 35vh;
+    /* Fixed typo */
+    /* Fixed height for vertical scrolling */
+    /* border: 1px solid #00008b; */
+    background-color: #e4eae1;
+}
+
+/* Table */
+#Shot_Grid .excel-table {
+    width: max-content;
+    border-collapse: collapse;
+    /* Make it look like Excel */
+}
+
+/* Container */
+#Load_Sensitivity_Grid .table-container {
+    overflow: hidden;
+    max-height: 100vh;
+    height: 35vh;
+    /* border: 1px solid darkblue; */
+    /* Fixed typo */
+}
+
+#Load_Sensitivity_Grid .table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    /* Enables horizontal scrolling */
+    overflow-y: auto;
+    /* Enables vertical scrolling */
+    max-height: 100vh;
+    height: 35vh;
+    /* Fixed typo */
+    /* Fixed height for vertical scrolling */
+    border: 1px solid #00008b;
+    background-color: #e4eae1;
+}

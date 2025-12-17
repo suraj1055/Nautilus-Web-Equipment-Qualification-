@@ -1,0 +1,25 @@
+/* .excel-table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  width: 100%;
+} */
+
+/* .excel-table table {
+  width: 100%;
+  border-collapse: collapse;
+} */
+
+/* .excel-table th, .excel-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+} */
+
+/* .excel-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+} */
+
+/* .excel-table th, .excel-table td {
+  min-width: 100px; 
+} */

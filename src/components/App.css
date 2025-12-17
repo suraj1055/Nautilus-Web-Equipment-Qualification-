@@ -1,0 +1,1458 @@
+@import '../../node_modules/@syncfusion/ej2-base/styles/material.css';
+
+@import '../../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+
+@import '../../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+
+@import '../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+
+@import '../../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+
+@import '../../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+
+@import '../../node_modules/@syncfusion/ej2-popups/styles/material.css';
+
+@import '../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+
+@import "../../node_modules/@syncfusion/ej2-grids/styles/material.css";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+@import '../../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
+
+
+@import '../../node_modules/@syncfusion/ej2-base/styles/material.css';
+
+@import '../../node_modules/@syncfusion/ej2-layouts/styles/material.css';
+
+
+/* @import '../../node_modules/@syncfusion/ej2-react-navigations/styles/material.css'; */
+
+@import "../../node_modules/@syncfusion/ej2-base/styles/material.css";
+
+@import url("../assets/custom-stylesheet/sixstep_style.css");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'verdana', sans-serif;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.e-tab.e-focused>.e-tab-header .e-toolbar-item .e-tab-wrap:focus {
+  border: 1px solid #2d467c;
+  background-color: #cad2c5;
+  /* background-color: #184e77;
+  color: #fff; */
+}
+
+
+.signup-container {
+  box-shadow: 0 10px 45px -20px rgba(0, 0, 0, 0.8);
+  padding: 0 10px;
+  max-width: 450px;
+}
+
+.login-container {
+  box-shadow: 0 10px 45px -20px rgba(0, 0, 0, 0.8);
+  padding: 0 10px;
+  max-width: 400px;
+}
+
+.grid-chart-container {
+  padding: 5px 0px;
+}
+
+.e-spreadsheet .e-sheet:not(.e-frozen-rows) {
+  border: 1px solid #573DAC;
+}
+
+.e-grid .e-gridheader .e-icons:not(.e-icon-hide):not(.e-check):not(.e-stop):not(.e-icon-reorderuparrow):not(.e-icon-reorderdownarrow){
+  margin-right: 5px;
+   color: #000;
+}
+.e-grid.e-default:not(.e-rtl) tr th.e-headercell:not(.e-firstcell):not(.e-headercell.e-frozen-left-border){
+  border-left: 1px solid #184e77;
+    border-right: 1px solid #184e77
+}
+
+
+
+.e-grid .e-gridheader .e-sortfilter .e-headercelldiv{
+      padding: 5px 1.8em 0 10px;
+}
+#MaterialGrid_toolbarItems .e-grid .e-toolbar-items, 
+.e-toolbar .e-toolbar-right, 
+#PMGrid .e-grid .e-toolbar-items, 
+.e-toolbar .e-toolbar-right
+{
+     margin-left: 0 !important;
+    margin-right: auto !important;
+}
+#MMGrid .e-toolbar .e-search,
+#PMGrid .e-toolbar .e-search
+{
+    margin-left: 0 !important;
+}
+
+#MaterialGrid_toolbarItems .e-control .e-toolbar .e-lib .e-keyboard{
+    display: flex !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+}
+
+
+#Cavity-Calc-Grid .e-spreadsheet .e-sheet {
+  border: 1px solid #573DAC;
+}
+
+.cavityGrid {
+  max-width: 100vw;
+}
+
+#cavityGrid2_Spreadsheet.e-spreadsheet.e-sheet {
+  width: 100%;
+}
+
+.grid_delete_row {
+  margin: 15px 0px;
+}
+
+.grid_container_btn {
+  margin: 12px 0px;
+}
+
+.chart_container_btn {
+  margin: 15px 0px;
+}
+
+.btn-save-chart {
+  margin-right: 20px;
+}
+
+.signup-card {
+  display: flex;
+  margin-top: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  display: flex;
+  margin-top: 10rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  margin-top: 3rem;
+}
+
+.lbl_design {
+  font-size: 12px;
+}
+
+.study-container {
+  width: 100%;
+  margin: -3px auto;
+}
+
+.study-container .e-tab .e-tab-header .e-toolbar-items .e-toolbar-item.e-active {
+  /* border: 1px solid #573DAC; */
+  margin-left: 5px;
+}
+
+/* .study-container .e-tab .e-tab-header .e-toolbar-item {
+  border: 1px solid #573DAC;
+} */
+.e-tab .e-tab-header .e-toolbar-item.e-active {
+  margin-left: 5px;
+}
+
+#e-item-defaultTab_2.e-toilbar-item.e-template.e-active {
+  color: #6cdbfb;
+}
+
+.e-content .e-item {
+  font-size: 12px;
+  margin: 10px;
+  text-align: justify;
+  padding-left: 0px;
+}
+
+.save_saveas_btn {
+  padding: 0px 0px 15PX 0PX;
+}
+
+.mybtn {
+  background-color: #573DAC;
+  ;
+}
+
+.step-button {
+  margin-top: 1.7rem;
+}
+
+.pressure-drop {
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px 200px;
+  grid-gap: 0.5rem;
+}
+
+.pack-hold {
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px 200px;
+  grid-gap: 1.5rem;
+}
+
+/*------------ custom from anurag landing page table css --------------*/
+
+.text-box-disabled {
+  background-color: #573DAC;
+}
+
+.frm-cntr {
+  background-color: aqua;
+}
+
+.icon-position {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.e-content .e-item {
+  font-size: 14px
+}
+
+div#e-item-defaultTab.e-toolbar-item.e-template {
+  color: #000000;
+  border: 1px solid #2d467c;
+}
+
+
+
+.e-tab .e-tab-header .e-toolbar-item .e-tab-wrap {
+  color: #000000
+}
+
+.e-tab .e-tab-header .e-toolbar-item .e-tab-wrap:hover .e-tab-text {
+  color: #6cdafb;
+}
+
+.e-tab .e-tab-header .e-toolbar-item.e-active .e-tab-text,
+.e-tab .e-tab-header .e-toolbar-item .e-tab-text {
+  text-transform: capitalize;
+}
+
+.e-tab .e-tab-header .e-toolbar-item.e-active#e-item-defaultTab {
+  color: #000;
+}
+
+div.e-tab-header.e-control.e-toolbar.e-lib.e-keyboard #defaultTab_tab_header_items .e-toolbar-item .e-template:focus {
+  background: none;
+  color: #000;
+  border: 1px solid #2d467c;
+}
+
+.e-tab.e-tab-header:not(.e-vertical).e-toolbar-item.e-active:focus {
+  color: #000;
+}
+
+.tab-view {
+  margin-top: 7px;
+}
+
+.scrollbar {
+  height: 260px;
+  overflow-y: scroll;
+  display: block;
+}
+
+input[name="Injection_Speed"] {
+  background-color: #fff;
+}
+
+.back-conatainer {
+  padding: 20px 10px;
+  background-color: #DEE2E8;
+}
+
+.current-page-lable {
+  height: 40px;
+  background-color: #8590A0;
+  padding: 6px 15px;
+}
+
+.current-page-lable p {
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+}
+
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:landscape) {
+  .study-container {
+    padding: 30px 30px;
+    height: 1000px;
+    overflow-y: scroll;
+  }
+
+  .step-button {
+    margin-top: 1.7rem;
+  }
+
+  .cav_bal_add_delete_btn {
+    margin-left: 30px;
+  }
+
+  .hot_run_btns {
+    margin-left: 85px;
+    margin-top: 4px;
+  }
+
+  .hot_run_grid_btns {
+    margin-left: 30px;
+  }
+
+  .cold_run_grid_btns {
+    margin-left: 30px;
+  }
+
+  .cooling_time_all_btn {
+    margin-left: 30px;
+  }
+
+  .pack-hold {
+    display: grid;
+    grid-template-columns: 300px 300px;
+    grid-gap: 2rem;
+  }
+
+
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:portrait) {
+  .study-container {
+    padding: 30px 30px;
+    height: 1000px;
+    overflow-y: scroll;
+  }
+
+  .step-button {
+    margin-top: 30px;
+  }
+
+  .pack-hold-import-data {
+    margin-top: 50px;
+  }
+
+  .step-button2 {
+    margin-top: 0px;
+  }
+
+  .pre-step-button2 {
+    margin-top: 45px;
+  }
+
+  .cav_bal_add_delete_btn {
+    margin-left: 30px;
+  }
+
+  .hot_run_btns {
+    margin-left: 85px;
+    margin-top: 4px;
+  }
+
+  .hot_run_grid_btns {
+    margin-left: 30px;
+  }
+
+  .cold_run_grid_btns {
+    margin-left: 30px;
+  }
+
+  .cooling_time_all_btn {
+    margin-left: 30px;
+  }
+
+  .pack-hold {
+    display: grid;
+    grid-template-columns: 300px 300px;
+    grid-gap: 2rem;
+  }
+
+
+
+}
+
+/* ***************** CAVITY_BALANCE_GRID_CSS ******************** */
+
+.Cavity-Grid-Container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.Cavity-Grid-1-Container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 74rem;
+}
+
+.Cavity-Grid-2-Container tr th {
+  width: 20%;
+}
+
+.table-heading-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+}
+
+.table-heading-content-editable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 2px 5px;
+}
+
+.table-heading-icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 20%;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+@media (min-height: 768px) and (max-height:1024px) {
+  .table-heading-icons {
+    font-size: 0.7rem;
+    width: 20%;
+  }
+
+  .table-heading-editable input {
+    width: 60%;
+    margin: 3px 2px;
+  }
+
+  .table-heading {
+    width: 80%;
+  }
+
+}
+
+.table-heading {
+  width: 70%;
+}
+
+.table-heading-editable {
+  width: 60%;
+}
+
+.table-heading input {
+  width: 40%;
+}
+
+.table-heading-editable input {
+  border: none;
+  outline: 0;
+}
+
+/* ******************* VISCOCITY CSS ******************* */
+.viscocity_icons {
+  font-size: 16px;
+  cursor: pointer;
+
+}
+
+.viscosity_table {
+  height: 200px;
+  overflow-y: scroll;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  /* margin-left: 50px; */
+}
+
+.viscosity-inputs {
+  width: 60%;
+  height: calc(1.75rem + 2px);
+
+}
+
+/*
+#viscocitySpread .colViscocity{
+ width: 20%;
+}*/
+
+.viscosity-grid {
+  max-width: 100vw;
+  /* width: 70%; */
+}
+
+.vchart {
+  max-width: 100vw;
+}
+
+svg rect[stroke="Gray"] {
+
+  fill: #fff;
+}
+
+
+
+.Viscosity_Showable_Chart {
+  display: none;
+}
+
+/* ****************** Pressure Drop ********************** */
+
+.pressure-grid {
+  max-width: 100vw;
+  /* width: 60%; */
+}
+
+.chartPressure {
+  max-width: 100vw;
+}
+
+/* ****************** CosameticGrid ********************** */
+
+#CosameticGrid.spreadsheet {
+  max-width: 100vw;
+}
+
+/* *********************** Cold Runner *************** */
+.chartComponent,
+.coldGrid {
+  max-width: 100vw;
+
+}
+
+.Cold-Grid-Container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.cold_table {
+  height: 350px;
+
+}
+
+.cold_table2 {
+  height: 450px;
+  overflow-x: scroll;
+}
+
+.cold-runner-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.cold-grid {
+  width: 35%;
+}
+
+.cold-chart {
+  width: 62%;
+}
+
+/* *********************** Screw Rotation Speed *************** */
+.screwMainGrid,
+.screwChart {
+  max-width: 100vw;
+
+}
+
+/* *********************** Back Pressure Grid *************** */
+.backGrid {
+  max-width: 100vw;
+
+}
+
+/* *********************** Equipment Injection Grid and Chart *************** */
+.equipmentInjGrid,
+.equipmentChart {
+  max-width: 100vw;
+}
+
+/* *********************** Equipment Short Repeatability Grid and Chart *************** */
+
+.equipmentShortGrid,
+.equipmentShortChart {
+  max-width: 100vw;
+}
+
+/* ***********************  Sensitivity Outliner Chart *************** */
+
+.SensitivityChart {
+  max-width: 100vw;
+}
+
+/* *********************** Main Effect Chart *************** */
+
+.MeffectChart {
+  max-width: 100vw;
+}
+
+/* *********************** Process Capability Grid and Chart *************** */
+
+.pcGrid,
+.pcChart {
+  max-width: 100vw;
+}
+
+#PC_Sheet .e-spreadsheet .e-table tr .e-cell {
+  font-size: 11px;
+  font-family: 'verdana', sans-serif;
+}
+
+/* *********************** DOE Sensitivity outliner Chart *************** */
+
+.sensitivityChart {
+  max-width: 100vw;
+}
+
+/* *********************** DOE Numrical Predictions Chart *************** */
+
+.numricalPreChart {
+  max-width: 100vw;
+}
+
+/* *********************** DOE Suggested Dim Changes Chart *************** */
+
+.suggestDimChart {
+  max-width: 100vw;
+}
+
+@media (min-height: 768px) and (max-height:1024px) {
+  .cold-runner-grid {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0;
+  }
+
+  .cold-grid {
+    width: 60%;
+    margin-bottom: 15px;
+  }
+
+  .cold-chart {
+    width: 100%;
+  }
+
+  .cold-heading {
+    width: 200px;
+  }
+
+  .cold_table2 {
+    height: 250px;
+    overflow-x: scroll;
+  }
+
+  .cold_table {
+    height: 250px;
+    overflow-x: scroll;
+  }
+
+  .lbl_design {
+    font-size: 13px;
+  }
+
+  .tab-view {
+    margin-top: 23px;
+  }
+
+  .btn-max-pre {
+    margin-top: 20px
+  }
+
+}
+
+/* ************** Cosmetic ***************** */
+.cosmetic-grid {
+  width: 500px;
+  margin-top: -20px;
+}
+
+/************************ Printable_Part ****************** */
+
+.Showable_Part {
+  display: none;
+}
+
+.Printable_Part table,
+th,
+td {
+  /* border: 1px solid black; */
+  border-collapse: collapse;
+  padding: 2px;
+}
+
+.Printable_Part {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Printable_Part .Input-Table {
+  margin: 20px 0;
+}
+
+.Printable_Part .Printable-Chart {
+  margin-top: 20px;
+}
+
+.Printable_Part .Printable-Grid {
+  margin: 20px;
+}
+
+.Printable_Part .Printable-Comment {
+  margin: 20px;
+  width: 80vw;
+}
+
+.Print {
+  margin: 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ******************** CSS For Go to Sessions & Grid Header ************* */
+.session-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.session-link {
+  color: blue;
+  text-decoration: underline;
+}
+
+.e-grid .e-headercell,
+.e-grid .e-detailheadercell {
+  background-color: #e4eae1;
+  color: black;
+  font-size: 13px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #e9f0f9;
+}
+
+.e-grid .e-headercelldiv {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 13px;
+  padding: 3px;
+}
+
+/* span .e-headertext{padding-left: 4px;} */
+
+.e-grid .e-gridheader tr th:first-child,
+.e-grid .e-gridheader tr th:last-child {
+  padding-left: 0px;
+  /* padding-top: 5px; */
+}
+
+/* .e-grid .e-gridheader tr th:last-child{ */
+/* padding-right: 70px; */
+/* } */
+
+.e-grid td.e-rowcell {
+
+  background: #e4eae1;
+  border: 1px solid #184e77;
+}
+
+.e-grid {
+  border-color: #3f5e55;
+}
+
+
+/************* css for mold data *********************/
+
+#Mold_parts td {
+  background-color: #e9ecef;
+  opacity: 1;
+  width: 170px;
+}
+
+.flex-row {
+  width: 900px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Mold-Session {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.mold_table {
+  padding: 5px 20px;
+}
+
+/* Bootstrap */
+.form-control {
+  padding: 2px;
+}
+
+.BreadCrum {
+
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0 5px;
+
+}
+
+.danger-alert {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.BreadCrum:hover {
+
+  cursor: pointer;
+  text-decoration: underline;
+  color: blue;
+
+}
+
+/* ***************** Header ******************** */
+.header-title {
+  position: relative;
+  left: 600px;
+  color: #fff;
+  font-size: 20px;
+  margin: 7px 10px;
+
+}
+
+.e-spinner-pane .e-spinner-inner .e-spin-material {
+  stroke: black;
+}
+
+
+.summary-table {
+  border-collapse: collapse;
+  width: 80%;
+  height: 220px;
+  overflow: auto;
+}
+
+.summary-table td {
+  padding: 2px;
+  font-size: 11px;
+}
+
+.summary-table th,
+.summary-table td {
+  border: 1px solid #000000;
+  text-align: left;
+  background-color: #fff;
+}
+
+.summary-table th {
+  background-color: #acb5a7;
+  color: black;
+  padding: 5px;
+  font-size: 11px;
+  /* width: 100%; */
+}
+
+/* Sensitivity_Outliers table css*/
+.Printable_Part table,
+th,
+td {
+  /* border: 1px solid #000; */
+  font-size: 11px;
+
+}
+
+/* .Printable_Part table tr:first-child {
+  background-color: #1672ba;
+  color: white;
+} */
+
+#select-variable td:nth-child(1) {
+  width: 20%;
+  /* Column 1 width */
+}
+
+#select-variable td:nth-child(2) {
+  width: 80%;
+  /* Column 2 width */
+}
+
+/* styles.css */
+.hidden {
+  display: none;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  /* Make sure it's above other elements */
+}
+
+#dialogBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1001;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid black;
+}
+
+.dialog-content .button-row {
+  display: flex;
+  align-self: center;
+}
+
+.dialog_Box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1001;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid black;
+}
+
+#SavedandExitdialogBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid black;
+}
+
+#SavedandExitdialogBox h5 {
+  /* font-size: 15px; */
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #3f5e55;
+
+}
+
+#SaveddialogBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid black;
+}
+
+#ImpFieldsdialogBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid black;
+}
+
+/* #dialogBox .dialog-content {
+  text-align: center;
+  align-items: center;
+} */
+
+#closeDialogBtn {
+  border: 2px solid #04498f;
+  box-shadow: inset 0 -1px 0 0 #d1e6f3;
+  background-color: #184e77;
+  border-bottom: 2px solid #04498f;
+  border-radius: 5px;
+  color: #fff;
+  padding: 7px 0 8px 0;
+  text-decoration: none;
+  text-align: center;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+#closeDialogBtn:hover {
+  background-color: #1a73aa !important;
+  border-color: #292a2b !important;
+  box-shadow: inset 0 -1px 0 #d1e6f3, 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+/************* css for doe *********************/
+.bottom-ribbon {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.ribbon-button {
+  padding: 10px 20px;
+  border: none;
+  margin-left: 10px;
+  background-color: #bbbcbd;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.ribbon-button:hover {
+  background-color: #4a545e;
+}
+
+select {
+  height: calc(1.75rem + 2px);
+}
+
+.capabilitychart {
+  max-width: 100vw;
+}
+
+.attributeGrid {
+  max-width: 100vw;
+}
+
+
+.lh1 {
+  height: 12px;
+}
+
+
+#Custom_Fields_Table th,
+#Custom_Fields_Table td {
+  padding: 0;
+}
+
+#materialEdit tr td input.form-control.b-b-primary,
+#materialView tr td input.form-control {
+  height: 30px;
+  font-size: 13px;
+}
+
+#materialEdit tr td input.form-control.b-b-primary::placeholder,
+#moldEdit tr td input.form-control.b-b-primary::placeholder,
+#moldEdit tr td select,
+#moldEdit tr td select option,
+#moldEdit_parts tr td input::placeholder,
+#moldEdit_parts tr td input.form-control,
+#moldEdit_parts tr td input.form-control.moldEdit_input,
+#moldView tr td select,
+#moldView tr td input.form-control.b-b-primary,
+#moldView tr td input.form-control.b-b-primary.moldView_input::placeholder,
+#moldEdit_parts tr td input.form-control,
+#moldEdit_parts tr td input.form-control.moldView_input {
+  font-size: 13px;
+  color: #495057;
+}
+
+/* #materialEdit tr td input.form-control.b-b-primary:focus::placeholder{
+
+  color: transparent;
+} */
+table#materialView tr td input.form-control {
+
+  cursor: none;
+}
+
+#prbtn {
+  margin-left: 400px;
+}
+
+#Grid3.e-grid.e-responsive .e-headercelldiv {
+  height: 80px;
+  line-height: 14px;
+}
+
+/* .e-grid .e-gridheader tr th:last-child{
+  padding-right: 130px; 
+}*/
+
+#DBTable .e-grid td.e-rowcell {
+  background-color: #e4eae1;
+  text-align: center;
+}
+
+#DBTable .e-grid th.e-rowcell {
+  text-align: center;
+}
+
+.MMTable .e-grid .e-headercelldiv {
+  /* background-color: #1b527b; */
+  background-color: #acb5a7;
+  /* color: #fff; */
+  color: #000;
+  margin-bottom: 0;
+  border-right: 1px solid #fff;
+  /* font-weight: bold; */
+}
+
+
+
+.MMTable .e-grid .e-gridheader .e-sortfilter .e-headercelldiv,
+.e-grid .e-gridheader .e-stackedheadercelldiv {
+  padding: 4px 0px;
+}
+
+.MMTable .e-grid .e-gridheader tr th:last-child {
+  padding: 0px;
+}
+
+.MMTable .e-grid.e-default .e-stackedheadercell {
+  background-color: #e9f0f9;
+  color: #000;
+  margin-bottom: 0;
+  border: 1px solid grey;
+  font-weight: bold;
+}
+
+.MMTable .e-grid th.e-headercell[aria-sort=ascending] .e-headertext,
+.e-grid th.e-headercell[aria-sort=descending] .e-headertext,
+.e-grid th.e-headercell[aria-sort=ascending] .e-sortfilterdiv,
+.e-grid th.e-headercell[aria-sort=descending] .e-sortfilterdiv {
+  color: #000;
+  font-size: 11px;
+}
+
+.MMTable .e-grid .e-gridheader .e-icons:not(.e-icon-hide):not(.e-check):not(.e-stop):not(.e-icon-reorderuparrow):not(.e-icon-reorderdownarrow) {
+  color: #000;
+}
+
+.MMTable .e-grid .e-leftfreeze:not(.e-summarycell, .e-indentcell, .e-updatedtd, .e-selectionbackground, .e-columnselection, .e-groupcaption, .e-cellselectionbackground, .e-active),
+.e-grid .e-rightfreeze:not(.e-summarycell, .e-updatedtd, .e-selectionbackground, .e-columnselection, .e-groupcaption, .e-cellselectionbackground, .e-active),
+.e-grid .e-fixedfreeze:not(.e-summarycell, .e-selectionbackground, .e-updatedtd, .e-columnselection, .e-groupcaption, .e-cellselectionbackground, .e-active) {
+  background-color: #e9f0f9;
+  color: #000000;
+  padding: 0px;
+  /* border: 1px solid grey; */
+}
+
+#AMTable .e-grid .e-rowcell:not(.e-editedbatchcell):not(.e-updatedtd) {
+  padding: 0;
+}
+
+#cusFieldT table.table tr td {
+  font-size: 12px;
+  /* padding: 3px; */
+}
+
+.table-bordered td {
+  border: 1px solid #000;
+}
+
+td#tdpadding,
+#moldEdit_parts tr td {
+  padding: 0;
+  margin: 0;
+}
+
+#moldEdit_parts tr td input.form-control.moldEdit_input,
+#moldEdit_parts tr td select.form-control,
+#moldNewPart tr td select.form-control {
+  background-color: #e0e2e5;
+  color: #313131;
+}
+
+.form-control.b-b-primary.moldView {
+  background: "#ebebeb";
+}
+
+#moldEdit_parts tr th:first-child,
+#moldEdit_parts tr td:first-child {
+  padding: 3px 7px;
+}
+
+#moldEdit_parts tr th:first-child.tdpadding,
+#moldEdit_parts tr td:first-child.w-100 {
+  padding: 0;
+}
+
+#moldEdit_parts tr td select#moldEdit_select,
+#moldEdit_parts tr td select {
+  padding: 0;
+  border: none;
+}
+
+.card.sixstepCard,
+.card.meltPreparation,
+.card.equipmentDash,
+.card.qualityDash,
+.card.doeAnalysistab,
+.card.unitmanagement {
+  width: 120%;
+  background: #e4eae1;
+}
+
+.card.optionsettingCard {
+  width: 110%;
+}
+
+.card.unitmanagement {
+  width: 105%;
+}
+
+#MM_Fields_Table .table-responsive {
+  width: 85%;
+}
+
+button#GridEdit_0_undefined.e-lib.e-btn.e-control.e-flat.custom_edit.e-edit-delete.e-editbutton:hover {
+  color: #28a828;
+}
+
+button#GridDelete_0_undefined.e-lib.e-btn.e-control.e-flat.custom_delete.e-edit-delete.e-deletebutton:hover {
+  color: #f44336;
+}
+
+.e-splitter .e-split-bar.e-split-bar-horizontal {
+  background: #6cdafb !important;
+  width: 7px !important;
+}
+
+.e-splitter .e-split-bar.e-split-bar-horizontal:hover {
+  background: #e3165b !important;
+
+}
+
+/* ***************** Dialogbox of Numrical Predition calculator button ******************** */
+.e-dialog .e-footer-content {
+  /* background-color:#c5e6f9; */
+  border-top: 1px solid #e9ecef;
+}
+
+.e-dialog .e-dlg-header-content {
+  background-color: #365190;
+}
+
+.e-dlg-header {
+  color: #fff !important;
+}
+
+.e-dlg-container {
+  top: -80px;
+}
+
+.e-btn.e-flat.e-primary
+
+/*.e-btn.e-flat*/
+  {
+  background-color: #0B44EF;
+  background-image: linear-gradient(0deg, #0936be, #0B44EF);
+  border: 1px solid #0936be;
+  border-bottom: 1px solid #07288d;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 0 -1px 1px #07288d;
+  text-transform: capitalize;
+}
+
+.e-btn.e-flat.e-primary:hover
+
+/*.e-btn.e-flat:hover */
+  {
+  background-color: #143fef;
+  border-color: #143fef;
+  color: #fff;
+}
+
+/* Edit Expt Data Spreadesheet */
+
+.e-spreadsheet .e-table td.e-cell.e-right-align,
+.e-spreadsheet .e-table tr .e-cell {
+  padding: 0px 4px;
+  border: 1px solid #000;
+}
+
+/* CavitySelection */
+.e-dialog .e-dlg-header-content {
+  padding: 0.5rem;
+}
+
+table.e-table thead tr {
+  position: sticky;
+}
+
+/* Doe New Session input focus*/
+
+input#doenSessioninput:focus {
+  outline-color: rgb(176, 174, 174);
+
+}
+
+/* Anova table */
+table#anovatable.summary-table tr td,
+table#anovatable.summary-table tr th {
+  padding: 5px !important;
+  font-size: 11px;
+}
+
+/* Moldliust*/
+
+Button#GridEdit_undefine.e-lib.e-btn.e-control.e-flat.custom_edit.e-edit.e-editbutton:hover {
+
+  color: #28a745 !important;
+}
+
+
+#DBTable .e-grid .e-rowcell {
+  padding: 4px;
+}
+
+#MoldActivutyGrid td[data-colindex]:not([data-colindex="0"]) {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modal-body h5 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #3f5e55;
+}
+
+.js-plotly-plot .plotly .main-svg {
+  fill: #cad2c5 !important;
+
+}
+#generalTruble.e-richtexteditor{
+  width: 85vw !important;
+
+}
+
+/*media query*/
+
+@media (min-width: 1360) and (max-width: 1920) {
+
+  rect[Attributes] {
+    width: 750px;
+  }
+}
+
+/* Media Query */
+
+@media screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
+#generalTruble.e-richtexteditor {
+    width: 85vw !important;
+}
+
+
+}
+
+@media screen and (min-device-width: 1024px) and (max-device-width: 1280px) {
+
+
+  .m-1.e-control.e-chart.e-lib.e-chart-focused.e-touch {
+    left: 3rem !important;
+  }
+
+  #Post_Mold_Sheet.Post_Mold.spreadsheet .e-control.e-spreadsheet.e-lib {
+    background-color: #a0cd8f;
+    width: 350px !important;
+  }
+
+  svg#charts_svg {
+    width: 400px;
+    /* height: 600px; */
+    margin: 0;
+    background-color: #28a745;
+    overflow-wrap: scroll;
+  }
+
+  div#charts.capabilitychart.b-primary.e-control.e-chart.e-lib.e-chart-focused.e-touch[style] {
+    overflow-x: scroll;
+    background-color: #122cd8;
+
+  }
+
+  svg:not(:root) {
+    overflow: auto;
+  }
+
+  svg#charts_svg rect#charts_ChartBorder {
+    width: 400px;
+  }
+
+}
+
+/* ============ Custom Sidebar Width Overrides ============ */
+/* Reduce sidebar width for icon-only layout */
+.page-wrapper .page-body-wrapper.sidebar-icon .page-sidebar {
+  width: 60px !important;
+}
+
+/* Adjust page body margin to match narrower sidebar */
+.page-wrapper .page-body-wrapper.sidebar-icon .page-sidebar ~ .page-body {
+  margin-left: 20px !important;
+}
+
+/* Adjust header margin for narrower sidebar */
+.page-wrapper .page-main-header {
+  margin-left: 60px !important;
+  width: calc(100% - 60px) !important;
+}
+
+/* When sidebar is open/closed */
+.page-wrapper .page-body-wrapper.sidebar-icon .page-sidebar.open {
+  margin-left: -60px !important;
+}
+
+/* Sidebar menu padding adjustments */
+.page-wrapper .page-body-wrapper.sidebar-icon .page-sidebar .sidebar-menu > li {
+  padding: 0 15px;
+}
+
+/* Center the sidebar header/logo */
+.page-wrapper .page-body-wrapper .page-sidebar .main-header-left {
+  padding: 10px 5px;
+}

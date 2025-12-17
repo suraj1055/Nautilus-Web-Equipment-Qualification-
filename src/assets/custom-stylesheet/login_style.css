@@ -1,0 +1,45 @@
+.authentication-box .theme-form .form-group .col-form-label{
+    color:#0000ff;
+}
+.txt-col{
+    border: 2px solid red;
+}
+
+.forgot-password{
+    padding-top: 10px;
+   float: right;
+   color: #414242;
+}
+.create_account{
+    padding-top: 50px;
+}
+.btn_txt{
+    font-weight: 700;    
+}
+.btn-block{
+    margin: auto;
+    width: 30%;
+}
+.card_head{
+    font-weight: 700;
+    color: #3f5e55;
+}
+.remember_me{
+    color: #414242;
+    font-size: 14px;
+}
+.sign_up,.sign_in{
+    color: #573DAC;
+}
+.bg_txture{
+    background-color: #573DAC !important;
+    height: 5px;
+}
+.bg_txture2{
+    background-color: #573DAC !important;
+    height: 5px;
+    padding-top: -50px;
+}
+.mygrid{
+    margin-top: 20px;
+}

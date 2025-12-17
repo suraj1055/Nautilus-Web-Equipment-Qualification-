@@ -1,0 +1,17 @@
+.lbl_style{
+    font-size: 13px;
+    /* margin-top: 7px; */
+    color: #414242;
+}
+.modal-dialog{
+    max-width: 550px;
+}
+.modal_footer_btn{
+    display: block;
+}
+.create_mold_btn{
+    float: right;
+}
+.col-md-8, .col-md-12{
+    font-size: 15px;
+}

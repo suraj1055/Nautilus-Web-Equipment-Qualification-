@@ -1,0 +1,395 @@
+.grid_style tr td {
+    padding: 1px 1px;
+}
+
+/* ******************************** Over All spreadsheet CSS ***************************** */
+
+.spreadsheet .e-spreadsheet .e-sheet-panel:not(.e-rtl) .e-header-panel thead .e-header-cell {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #1b527b;
+    color: white;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}
+
+.spreadsheet .e-spreadsheet .e-sheet-panel:not(.e-rtl) .e-row-header .e-header-cell {
+    padding: 1px;
+}
+
+/* *********************** Viscosity Curve ********************** */
+#Viscosity_Sheet td[aria-colindex="4"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+}
+
+#Viscosity_Sheet td[aria-colindex="5"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+}
+
+#Viscosity_Sheet td[aria-colindex="6"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+}
+
+#Viscosity_Sheet td[aria-colindex="7"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+}
+
+/* .e-spreadsheet .e-column-header{
+    position: relative;
+} */
+
+#Viscosity_Sheet .e-spreadsheet .e-column-header .e-table .e-header-cell{
+     vertical-align: top;
+     padding: 0;
+}
+
+/* *************************** Cavity Balance *********************** */
+
+#Cavity_Sheet td[aria-colindex="1"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+    width: 150px;
+    text-align: right;
+}
+
+#Cavity-Calc-Grid td[aria-colindex="1"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+    width: 150px;
+    text-align: right;
+}
+
+#Cavity-Calc-Grid tr[aria-rowindex="1"] td {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #21325E;
+    color: #fff;
+    width: 150px;
+    text-align: right;
+}
+
+/* *********************** Pressure Drop Study ********************** */
+#Pressure_Sheet td[aria-colindex="3"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+}
+
+#Pressure_Sheet td[aria-colindex="4"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+}
+
+#Pressure_Sheet td[aria-colindex="5"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+}
+
+/* ************************* Screw Sheet ************************* */
+#Screw_Sheet td[aria-colindex="3"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+}
+
+#Screw_Sheet td[aria-colindex="4"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+}
+
+.screw-rotation-inputs {
+    display: grid;
+    grid-template-columns: repeat(4, 0.8fr);
+    gap: 5px;
+}
+
+/* ************************* Back Press Sheet ************************* */
+#BackPress-Calc-Grid tr[aria-rowindex="1"] td {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #21325E;
+    color: #fff;
+    width: 150px;
+    text-align: right;
+}
+
+#BackPress-Calc-Grid tr[aria-rowindex="2"] td {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #f5caca;
+    color: #fd0606;
+    width: 100px;
+    text-align: right;
+}
+
+#BackPress-Calc-Grid td[aria-colindex="1"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+    width: 100px;
+    text-align: right;
+}
+
+#BackPress-Calc-Grid tr[aria-rowindex="2"] td[aria-label="Range A2"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+    width: 100px;
+    text-align: right;
+}
+
+.grid_style tr td {
+    padding: 1px 1px;
+    width: 120px;
+    font-size: 11px;
+    font-family: verdana,sans-serif;
+}
+
+.cold_table2 {
+    height: 400px;
+    overflow-x: scroll;
+}
+
+/* ****************** Inj Speed ********************* */
+#Inj_Speed_Sheet td[aria-colindex="3"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+    width: 100px;
+    text-align: right;
+}
+
+#Inj_Speed_Sheet td[aria-colindex="4"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+    width: 100px;
+    text-align: right;
+}
+
+#Inj_Speed_Sheet td[aria-colindex="5"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+    text-align: right;
+}
+
+#Load_Sheet td[aria-colindex="6"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+    text-align: right;
+}
+
+#Shot_Sheet td[aria-colindex="1"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+    text-align: right;
+}
+
+.Inj_Speed_Inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 0.8fr);
+    gap: 1px;
+}
+
+/* ******************************* PROCESS CAPABILITY *****************************************/
+#PC_Sheet .e-spreadsheet .e-sheet {
+    /* Apply your CSS styles here */
+    /* For example: */
+    border: 1px solid #573DAC;
+}
+
+#PC_Sheet td[aria-colindex="1"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+    text-align: right;
+    border: 1px solid #cccccc;
+}
+
+#PC_Sheet tr[aria-rowindex="1"] td {
+    /* Apply your CSS styles here */
+    /* For example: */
+    /* background-color: #e0e0eb; */
+    color: #000;
+    text-align: right;
+}
+
+#PC_Sheet tr[aria-rowindex="2"] td {
+    /* Apply your CSS styles here */
+    /* For example: */
+    /* background-color: #e0e0eb; */
+    color: #000;
+    text-align: right;
+}
+
+#PC_Sheet tr[aria-rowindex="3"] td {
+    /* Apply your CSS styles here */
+    /* For example: */
+    /* background-color: #e0e0eb; */
+    color: #000;
+    text-align: right;
+}
+
+#PC_Sheet tr[aria-rowindex="4"] td {
+    /* Apply your CSS styles here */
+    /* For example: */
+    /* background-color: #e0e0eb; */
+    color: #000;
+    text-align: right;
+}
+
+#PC_Sheet tr[aria-rowindex="5"] td {
+    /* Apply your CSS styles here */
+    /* For example: */
+    /* background-color: #e0e0eb; */
+    color: #000;
+    text-align: right;
+}
+
+#Attribute_Sheet td[aria-colindex="1"] {
+    /* Apply your CSS styles here */
+    /* For example: */
+    background-color: #e0e0eb;
+    color: #000;
+    text-align: right;
+}
+
+#Statistics_Grid table {
+    border: 2px solid black;
+    width: 45%;
+    margin: auto;
+    height: 50vh;
+}
+
+#Statistics_Grid th {
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+#Statistics_Grid td {
+    text-align: center;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.nav-tabs .nav-item {
+    border: 1px solid #2d467c !important;
+    margin-right: -16px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    border-radius: 10px 10px 0px 0px;
+    margin-left: 20px;
+    height: 34px;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 13px;
+   
+}
+.nav-tabs li.nav-item:active{
+ border-bottom: 3px solid #6cdbfb;
+
+}
+li.nav-item:hover {
+    /* color: #6cdbfb; */
+}
+a.custom-tab.active.nav-link{
+    font-weight: normal;
+    border-bottom: solid 4px #1a87dc !important;
+    color: #1a87dc;
+    height: 36px;
+    box-shadow: 8px 0px 10px #9E9E9E;
+}
+.nav-tabs .nav-item:hover{
+
+    color:#6cdbfb;
+    background-color: #184e77;
+    /* border-bottom: solid 4px #1a87dc !important; */
+    box-shadow: 8px 0px 10px #9E9E9E;
+
+}
+/* a.custom-tab.active.nav-link{
+
+} */
+
+
+li.nav-item:hover{ color:#6cdbfb !important;}
+li .nav-tabs{ border-bottom: solid 4px #6cdbfb !important;}
+.nav-tabs .nav-item span:hover, .nav-tabs .nav-item a:hover, .nav-tabs .nav-link span:hover, a.custom-tab.active.nav-link:hover,
+.nav-tabs .nav-item:hover{
+
+    color:#6cdbfb!important;
+}
+.nav-tabs .nav-link:hover{
+
+    color:#6cdbfb;
+}
+
+a#FDVTAB.nav-link{
+    /* color: #6cdbfb; */
+         background: #184e77 !important;
+    color: #fff !important;
+    border-bottom: 4px solid #1a87dc !important;
+    border-radius: 10px 10px 0 0;  
+}
+
+#selectnav a.custom-tab.active.nav-link{
+    color: #000 !important;
+    /* border-bottom: 1px solid #1b527b !important; */
+    border-radius: 10px 10px 0 0;
+}
+
+a:not([href]):not([tabindex]):hover{
+    color: #6cdbfb;
+}
+/* .nav-tabs .nav-link {
+    border-top: 1px solid #573DAC !important;
+    border-left: 1px solid #573DAC !important;
+    border-right: 1px solid #573DAC !important;
+} */
+.nav.nav-tabs .nav-item:hover{
+    color:#6cdbfb;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    .nav-tabs .nav-item{
+font-size:9.5px!important;
+}
+
+
+}

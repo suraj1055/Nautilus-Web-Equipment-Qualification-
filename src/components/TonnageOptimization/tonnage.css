@@ -1,0 +1,517 @@
+.tonnage-root {
+  height: 100%;
+}
+
+.tonnage-header {
+  background: #e0e0e0;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.btn {
+  padding: 8px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: 1px solid #999;
+  background: #e0e0e0;
+  color: #333;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background: #d0d0d0;
+  border-color: #888;
+}
+
+.btn.primary {
+  background: #4b79a1;
+  color: white;
+  border: 1px solid #3a5f7f;
+}
+
+.btn.primary:hover {
+  background: #3a5f7f;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #ffffff;
+  padding: 20px;
+  width: 350px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.modal-box h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.modal-box p {
+  margin: 0 0 20px 0;
+  color: #666;
+}
+
+.field {
+  margin-bottom: 12px;
+}
+
+.field input {
+  width: 100%;
+  padding: 6px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabs-container {
+  padding: 10px;
+  background: #d4d9d1;
+}
+
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.tab-bar button {
+  padding: 10px 20px;
+  border: 1px solid #999;
+  background: #e0e0e0;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+  border-radius: 3px 3px 0 0;
+  border-bottom: none;
+  transition: all 0.2s;
+}
+
+.tab-bar button:hover {
+  background: #d0d0d0;
+}
+
+.tab-bar button.active {
+  background: #4b79a1;
+  color: white;
+  border-color: #3a5f7f;
+  border-bottom-color: #4b79a1;
+  position: relative;
+  z-index: 1;
+}
+
+.tab-bar button.active:hover {
+  background: #3a5f7f;
+}
+
+/* STUDY WEIGHT LAYOUT */
+.study-container {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  grid-template-rows: auto 50px;
+  height: calc(100vh - 120px);
+  gap: 10px;
+  background: #d4d9d1;
+  padding: 10px;
+}
+
+/* TABLE */
+.study-table {
+  background: #ffffff;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.study-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.study-table th {
+  background: #5a5a5a;
+  color: white;
+  border: 1px solid #444;
+  font-size: 13px;
+  padding: 8px 6px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.study-table td {
+  border: 1px solid #ddd;
+  padding: 0;
+  background: white;
+}
+
+.study-table input {
+  width: 100%;
+  height: 28px;
+  border: 1px solid #ccc;
+  padding: 4px 6px;
+  background: white;
+  font-size: 13px;
+}
+
+.study-table input:focus {
+  outline: 1px solid #4b79a1;
+  border-color: #4b79a1;
+}
+
+.gray {
+  background: #f5f5f5;
+  text-align: center;
+  padding: 6px;
+  font-size: 13px;
+}
+
+/* CHART */
+.study-chart {
+  border: 1px solid #ccc;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.chart-title {
+  display: flex;
+  align-items: center;
+  background: #5a5a5a;
+  color: white;
+  padding: 8px 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #444;
+}
+
+.chart-title span {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+}
+
+.chart-title button {
+  margin-left: auto;
+  padding: 4px 12px;
+  background: #4b79a1;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.chart-title button:hover {
+  background: #3a5f7f;
+}
+
+.chart-box {
+  flex: 10;
+  margin: 10px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 2px;
+}
+
+/* FOOTER */
+.study-footer {
+  grid-column: 1 / 3;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 10px;
+  background: transparent;
+}
+
+.study-footer button {
+  padding: 8px 20px;
+  border: 1px solid #999;
+  background: #e0e0e0;
+  color: #333;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.study-footer button:hover {
+  background: #d0d0d0;
+  border-color: #888;
+}
+
+.study-footer button.primary {
+  background: #4b79a1;
+  color: white;
+  border: 1px solid #3a5f7f;
+}
+
+.study-footer button.primary:hover {
+  background: #3a5f7f;
+  border-color: #2d4a63;
+}
+
+.tonnage-container {
+  display: flex;
+  height: calc(100vh - 180px);
+  position: relative;
+}
+
+.tonnage-left {
+  width: 60%;
+  padding: 10px;
+}
+
+.tonnage-right {
+  width: 40%;
+  border-left: 2px solid #9aa7b0;
+  padding: 10px;
+}
+
+.tonnage-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tonnage-table th {
+  background: #b7cce3;
+  border: 1px solid #8c9aa6;
+  padding: 6px;
+}
+
+.tonnage-table td {
+  border: 1px solid #8c9aa6;
+}
+
+.tonnage-table input {
+  width: 100%;
+  border: none;
+  padding: 6px;
+}
+
+.chart-placeholder {
+  height: 300px;
+  border: 2px solid #9aa7b0;
+  background: #fff;
+}
+
+.tonnage-footer {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+
+.tonnage-footer button {
+  margin-left: 10px;
+}
+
+/* ================= NOTES ================= */
+
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 180px);
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Toolbar */
+.notes-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px;
+  background: #5a5a5a;
+  border-bottom: 1px solid #444;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.toolbar-group {
+  display: flex;
+  gap: 4px;
+  padding-right: 8px;
+  border-right: 1px solid #777;
+}
+
+.toolbar-group:last-child {
+  border-right: none;
+}
+
+.notes-toolbar button,
+.notes-toolbar select {
+  padding: 6px 12px;
+  border: 1px solid #999;
+  background: #e0e0e0;
+  color: #333;
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 3px;
+}
+
+.notes-toolbar button:hover {
+  background: #d0d0d0;
+}
+
+.notes-toolbar select {
+  background: white;
+}
+
+/* Editor */
+.notes-editor {
+  flex: 1;
+  margin: 10px;
+  padding: 14px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  overflow-y: auto;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 0;
+  border-radius: 2px;
+}
+
+/* Footer */
+.notes-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  background: transparent;
+  border-top: 1px solid #ddd;
+}
+
+.notes-footer button {
+  margin-left: 10px;
+  padding: 8px 20px;
+  border: 1px solid #999;
+  background: #e0e0e0;
+  color: #333;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.notes-footer button:hover {
+  background: #d0d0d0;
+  border-color: #888;
+}
+
+.notes-footer .primary {
+  background: #4b79a1;
+  color: white;
+  border: 1px solid #3a5f7f;
+}
+
+.notes-footer .primary:hover {
+  background: #3a5f7f;
+  border-color: #2d4a63;
+}
+
+/* ================= SESSION LIST ================= */
+
+.session-list {
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 10px 0;
+}
+
+.session-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.session-item:hover {
+  background: #e8f4f8;
+  border-color: #4b79a1;
+  transform: translateX(2px);
+}
+
+.session-info {
+  flex: 1;
+}
+
+.session-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.session-date {
+  font-size: 12px;
+  color: #666;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  padding: 0;
+  margin-left: 10px;
+}
+
+.btn-delete:hover {
+  background: #c82333;
+  transform: scale(1.1);
+}
+
+.btn.cancel {
+  background: #6c757d;
+  color: white;
+  border: 1px solid #5a6268;
+}
+
+.btn.cancel:hover {
+  background: #5a6268;
+}
+
+    

@@ -5,22 +5,16 @@ import '../assets/custom-stylesheet/header_style.css';
 import './App.css';
 import Loader from './common/loader';
 import 'react-toastify/dist/ReactToastify.css';
+import TonnageOptimization from "./TonnageOptimization/TonnageOptimization";
 
-const App = (props) => {
-    return (
-        <Fragment>
-            <Loader />
-            <div className="page-wrapper">
-                <div className="page-body-wrapper sidebar-icon">
-                    <Header />
-                    <Sidebar />
-                    <div className="page-body">
-                        {props.children}
-                    </div>
-                </div>
-            </div>
-        </Fragment>
-    );
-}
+
+
+const App = () => {
+  return (
+    <div className="app-container">
+      <TonnageOptimization />
+    </div>
+  );
+};
 
 export default App;

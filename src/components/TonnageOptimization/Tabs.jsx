@@ -36,7 +36,10 @@ const Tabs = ({ session }) => {
         </button>
       </div>
 
-      <div className="tab-content">
+      <div className="tab-content"   style={{
+    height: "calc(100vh - 160px)", // header + tabs height
+    overflow: "hidden",
+  }} >
         {activeTab === "weight" && <StudyWeight sessionId={session?.id} />}
         {activeTab === "dim1" && <Dim1 sessionId={session?.id} />}
         {activeTab === "dim2" && <Dim2 sessionId={session?.id} />}

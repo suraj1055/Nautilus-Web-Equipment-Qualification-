@@ -290,6 +290,14 @@
   border-radius: 6px;
   overflow: hidden;
 }
+.e-cell.selected {
+  background-color: #cfe5ff;
+}
+
+.e-cell:focus {
+  outline: 2px solid #1e5d8c;
+}
+
 
 /* Header */
 .modal-header {

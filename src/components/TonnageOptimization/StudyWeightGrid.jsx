@@ -252,36 +252,85 @@ const StudyWeightGrid = ({ getData, data, setData, setRowToBeDeleted }) => {
         return null;
     };
 
+    const clearAllSelections = () => {
+  if (!table) return;
+  table.querySelectorAll(".selected").forEach(cell => {
+    cell.classList.remove("selected");
+  });
+};
+
+
     // Handle keyboard navigation
     const handleKeyDown = (event, rowIndex, colIndex) => {
         // **Handle Tab Key (Move to Next Editable Cell)**
-        if (event.key === "Tab") {
-            event.preventDefault();
-            const next = findNextEditableCell(rowIndex, colIndex, event.shiftKey ? 'left' : 'right');
-            if (next) {
-                const nextCell = table?.querySelector(`[data-row='${next.row}'][data-col='${next.col}']`);
-                if (nextCell) {
-                    nextCell.focus();
-                }
-            }
-            return;
-        }
+       if (event.key === "Tab") {
+  event.preventDefault();
+
+  const direction = event.shiftKey ? "left" : "right";
+  const next = findNextEditableCell(rowIndex, colIndex, direction);
+
+  if (next) {
+    const nextCell = table?.querySelector(
+      `[data-row='${next.row}'][data-col='${next.col}']`
+    );
+
+    if (nextCell) {
+      // 🔴 CLEAR old highlight
+      clearAllSelections();
+
+      // 🔵 UPDATE selection state
+      setSelectionRange({
+        startRow: next.row,
+        startCol: next.col,
+        endRow: next.row,
+        endCol: next.col
+      });
+
+      // 🔵 APPLY highlight
+      nextCell.classList.add("selected");
+
+      // 🔵 MOVE focus
+      nextCell.focus();
+    }
+  }
+
+  return;
+}
+
 
         // **Handle Enter Key (Move to Next Row)**
-        if (event.key === "Enter") {
-            event.preventDefault(); // Prevent line break in contentEditable
-            
-            // Move to same column in next row (if editable)
-            const nextRow = rowIndex + 1;
-            if (nextRow < data.length) {
-                const nextCell = table?.querySelector(`[data-row='${nextRow}'][data-col='${colIndex}']`);
-                if (nextCell && nextCell.contentEditable !== 'false') {
-                    nextCell.focus();
-                    return;
-                }
-            }
-            return;
-        }
+      if (event.key === "Enter") {
+  event.preventDefault(); // Prevent newline in contentEditable
+
+  const nextRow = rowIndex + 1;
+
+  if (nextRow < data.length) {
+    const cellEl = table?.querySelector(
+      `[data-row='${nextRow}'][data-col='${colIndex}']`
+    );
+
+    if (cellEl && cellEl.contentEditable !== "false") {
+      // 🔴 CLEAR previous selection
+      clearAllSelections();
+
+      // 🔵 SET new single-cell selection
+      setSelectionRange({
+        startRow: nextRow,
+        startCol: colIndex,
+        endRow: nextRow,
+        endCol: colIndex
+      });
+
+      // 🔵 APPLY visual highlight
+      cellEl.classList.add("selected");
+
+      // 🔵 MOVE focus
+      cellEl.focus();
+    }
+  }
+
+  return;
+}
 
         // Get the current cell element
         const cell = event.target;
@@ -291,84 +340,119 @@ const StudyWeightGrid = ({ getData, data, setData, setRowToBeDeleted }) => {
         const nonEditableCols = [4, 5, 6];
 
         // Handle Arrow Right (Move within text, then jump to next editable cell)
-        if (event.key === "ArrowRight") {
-            if (cursorPos < textLength) {
-                return; // Allow cursor to move within text
-            }
-            // If at the end of text, move to the next editable cell
-            const next = findNextEditableCell(rowIndex, colIndex, 'right');
-            if (next) {
-                const nextCell = table?.querySelector(`[data-row='${next.row}'][data-col='${next.col}']`);
-                if (nextCell) {
-                    nextCell.focus();
-                }
-            }
-            event.preventDefault();
-            return;
-        }
+       if (event.key === "ArrowRight") {
+  const nextPos = findNextEditableCell(rowIndex, colIndex, "right");
+
+  if (nextPos) {
+    const cellEl = table?.querySelector(
+      `[data-row='${nextPos.row}'][data-col='${nextPos.col}']`
+    );
+
+    if (cellEl) {
+      clearAllSelections();
+
+      setSelectionRange({
+        startRow: nextPos.row,
+        startCol: nextPos.col,
+        endRow: nextPos.row,
+        endCol: nextPos.col
+      });
+
+      cellEl.classList.add("selected");
+      cellEl.focus();
+    }
+  }
+
+  event.preventDefault();
+  return;
+}
+
 
         // Handle Arrow Left (Move within text, then jump to previous editable cell)
-        if (event.key === "ArrowLeft") {
-            if (cursorPos > 0) {
-                return; // Allow cursor to move within text
-            }
-            // If at the beginning of text, move to the previous editable cell
-            const prev = findNextEditableCell(rowIndex, colIndex, 'left');
-            if (prev) {
-                const prevCell = table?.querySelector(`[data-row='${prev.row}'][data-col='${prev.col}']`);
-                if (prevCell) {
-                    prevCell.focus();
-                }
-            }
-            event.preventDefault();
-            return;
-        }
+       if (event.key === "ArrowLeft") {
+  const prevPos = findNextEditableCell(rowIndex, colIndex, "left");
+
+  if (prevPos) {
+    const cellEl = table?.querySelector(
+      `[data-row='${prevPos.row}'][data-col='${prevPos.col}']`
+    );
+
+    if (cellEl) {
+      clearAllSelections();
+
+      setSelectionRange({
+        startRow: prevPos.row,
+        startCol: prevPos.col,
+        endRow: prevPos.row,
+        endCol: prevPos.col
+      });
+
+      cellEl.classList.add("selected");
+      cellEl.focus();
+    }
+  }
+
+  event.preventDefault();
+  return;
+}
 
         // Handle Arrow Down (Move to the cell below, skip if non-editable)
-        if (event.key === "ArrowDown") {
-            event.preventDefault();
-            const nextRow = rowIndex + 1;
-            if (nextRow < data.length) {
-                let targetCol = colIndex;
-                // If current cell is non-editable, find first editable column
-                if (nonEditableCols.includes(colIndex)) {
-                    for (let col = 0; col < data[0].length; col++) {
-                        if (!nonEditableCols.includes(col)) {
-                            targetCol = col;
-                            break;
-                        }
-                    }
-                }
-                const nextRowCell = table?.querySelector(`[data-row='${nextRow}'][data-col='${targetCol}']`);
-                if (nextRowCell && nextRowCell.contentEditable !== 'false') {
-                    nextRowCell.focus();
-                }
-            }
-            return;
-        }
+     if (event.key === "ArrowDown") {
+  const nextRow = rowIndex + 1;
+
+  if (nextRow < data.length) {
+    const cellEl = table?.querySelector(
+      `[data-row='${nextRow}'][data-col='${colIndex}']`
+    );
+
+    if (cellEl && cellEl.contentEditable !== "false") {
+      clearAllSelections();
+
+      setSelectionRange({
+        startRow: nextRow,
+        startCol: colIndex,
+        endRow: nextRow,
+        endCol: colIndex
+      });
+
+      cellEl.classList.add("selected");
+      cellEl.focus();
+    }
+  }
+
+  event.preventDefault();
+  return;
+}
+
 
         // Handle Arrow Up (Move to the cell above, skip if non-editable)
-        if (event.key === "ArrowUp") {
-            event.preventDefault();
-            const prevRow = rowIndex - 1;
-            if (prevRow >= 0) {
-                let targetCol = colIndex;
-                // If current cell is non-editable, find first editable column
-                if (nonEditableCols.includes(colIndex)) {
-                    for (let col = 0; col < data[0].length; col++) {
-                        if (!nonEditableCols.includes(col)) {
-                            targetCol = col;
-                            break;
-                        }
-                    }
-                }
-                const prevRowCell = table?.querySelector(`[data-row='${prevRow}'][data-col='${targetCol}']`);
-                if (prevRowCell && prevRowCell.contentEditable !== 'false') {
-                    prevRowCell.focus();
-                }
-            }
-            return;
-        }
+       if (event.key === "ArrowUp") {
+  const prevRow = rowIndex - 1;
+
+  if (prevRow >= 0) {
+    const cellEl = table?.querySelector(
+      `[data-row='${prevRow}'][data-col='${colIndex}']`
+    );
+
+    if (cellEl && cellEl.contentEditable !== "false") {
+      clearAllSelections();
+
+      setSelectionRange({
+        startRow: prevRow,
+        startCol: colIndex,
+        endRow: prevRow,
+        endCol: colIndex
+      });
+
+      cellEl.classList.add("selected");
+      cellEl.focus();
+    }
+  }
+
+  event.preventDefault();
+  return;
+}
+
 
         // **Restrict input to numbers and one decimal**
         if (!/[0-9.]/.test(event.key) &&
@@ -390,20 +474,32 @@ const StudyWeightGrid = ({ getData, data, setData, setRowToBeDeleted }) => {
     };
 
     // Handle cell selection for copying
-    const handleCellClick = (rowIndex, colIndex, event) => {
-        if (event.ctrlKey || event.metaKey) {
-            event.target.classList.toggle("selected");
-        } else {
-            if (table) {
-                table.querySelectorAll(".selected").forEach((cell) => {
-                    cell.classList.remove("selected");
-                });
-            }
-            event.target.classList.add("selected");
-        }
+  const handleCellClick = (rowIndex, colIndex, event) => {
+    if (!event.target) return;
 
-        setRowToBeDeleted(rowIndex);
-    };
+    // ✅ CLEAR range selection when clicking a single cell
+    setSelectionRange({
+        startRow: rowIndex,
+        startCol: colIndex,
+        endRow: rowIndex,
+        endCol: colIndex,
+    });
+
+    // Remove all previous selections
+    if (table) {
+        table.querySelectorAll(".selected").forEach((cell) => {
+            cell.classList.remove("selected");
+        });
+    }
+
+    // Mark only the clicked cell
+    event.target.classList.add("selected");
+
+    // ✅ CRITICAL: move keyboard focus
+    event.target.focus()
+    setRowToBeDeleted(rowIndex);
+};
+
 
     const handleOnInput = (event) => {
         // Save cursor position before modifying text

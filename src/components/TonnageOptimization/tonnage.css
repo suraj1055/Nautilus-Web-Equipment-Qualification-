@@ -79,6 +79,21 @@
   border-color: #164A70;
 }
 
+.tab-content {
+  height: 100%;
+}
+
+.tab-pane {
+  height: 100%;
+}
+
+.tab-pane.active {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
 /* ================= MAIN STUDY LAYOUT ================= */
 .study-container {
   display: grid;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   GridComponent,
   Inject,
@@ -18,12 +18,13 @@ import "../../App.css";
 import '../database.css'
 
 const MachineDatabase = ({ machineData }) => {
-  var grid;
+  const gridRef = useRef(null);
   const history = useHistory();
 
   const toolbar = ["Search", "ExcelExport"];
 
   const toolbarClick = (args) => {
+    const grid = gridRef.current;
     if (grid && args.item.id === 'MachineGrid_excelexport') {
       grid.showSpinner();
       grid.excelExport({ fileName: 'Machine Database Excel.xlsx' });
@@ -31,12 +32,21 @@ const MachineDatabase = ({ machineData }) => {
   };
 
   const excelExportComplete = () => {
-    grid.hideSpinner();
+    const grid = gridRef.current;
+    if (grid) {
+      grid.hideSpinner();
+    }
   };
 
   const [SelectRowModal, setSelectRowModal] = useState(false);
 
   const [column] = useState([
+    {
+      field: "id",
+      headerText: "ID",
+      visible: false,
+      isPrimaryKey: true,
+    },
     {
       field: "Machine_Number",
       headerText: "Mach No",
@@ -193,11 +203,33 @@ const MachineDatabase = ({ machineData }) => {
 
   const selectionSettings = { type: "Single" };
 
-  const click = () => {
-    setSelectedRowIndexes({
-      rowIdx: grid.getSelectedRowIndexes(),
-      Machine_Id: grid.getSelectedRecords()[0]?.id,
-    });
+  const rowSelected = (args) => {
+    const grid = gridRef.current;
+    if (grid) {
+      setSelectedRowIndexes({
+        rowIdx: grid.getSelectedRowIndexes(),
+        Machine_Id: grid.getSelectedRecords()[0]?.id,
+      });
+
+      const targetRow = grid.getRowByIndex(args.rowIndex);
+      if (targetRow) {
+        targetRow.querySelectorAll('td').forEach(cell => {
+          cell.style.backgroundColor = 'lightblue';
+        });
+      }
+    }
+  };
+
+  const rowSelecting = (args) => {
+    const grid = gridRef.current;
+    if (grid) {
+      const PreviousRow = grid.getRowByIndex(args.previousRowIndex);
+      if (PreviousRow) {
+        PreviousRow.querySelectorAll('td').forEach(cell => {
+          cell.style.backgroundColor = '#e4eae1';
+        });
+      }
+    }
   };
 
   const [DeleteConfirm, setDeleteConfirm] = useState(false);
@@ -216,6 +248,7 @@ const MachineDatabase = ({ machineData }) => {
   };
 
   function created(args) {
+    const grid = gridRef.current;
     if (grid) {
       document
         .getElementById(grid.element.id + "_searchbar")
@@ -235,6 +268,16 @@ const MachineDatabase = ({ machineData }) => {
       setAllMachineData(updatedRows);
       sessionStorage.setItem("MachineData", JSON.stringify(updatedRows));
 
+      // Reset selection after delete
+      setSelectedRowIndexes({
+        rowIdx: "",
+        Machine_Id: "",
+      });
+
+      if (gridRef.current) {
+        gridRef.current.clearSelection();
+      }
+
       ToggleDeleteConfirm();
     } else {
       setSelectRowModal(!SelectRowModal);
@@ -244,7 +287,7 @@ const MachineDatabase = ({ machineData }) => {
   // Load data from sessionStorage on mount
   useEffect(() => {
     const storedData = JSON.parse(sessionStorage.getItem("MachineData")) || [];
-    
+
     // If no stored data, add sample data
     if (storedData.length === 0) {
       const sampleData = [
@@ -312,25 +355,6 @@ const MachineDatabase = ({ machineData }) => {
     }
   }, [AllMachineData]);
 
-  const rowSelecting = (args) => {
-    const PreviousCell = document.querySelector(`#MachineGrid tr[data-rowindex="${args.previousRowIndex}"]`);
-
-    if (PreviousCell) {
-      PreviousCell.querySelectorAll('td').forEach(cell => {
-        cell.style.backgroundColor = '#e4eae1';
-      });
-    }
-  }
-
-  const rowSelected = (args) => {
-    const targetRow = document.querySelector(`#MachineGrid tr[data-rowindex="${args.rowIndex}"]`);
-
-    if (targetRow) {
-      targetRow.querySelectorAll('td').forEach(cell => {
-        cell.style.backgroundColor = 'lightblue';
-      });
-    }
-  };
 
   const filterSettings = { type: 'Excel' };
 
@@ -423,9 +447,9 @@ const MachineDatabase = ({ machineData }) => {
             <table className="table">
               <tbody>
                 <tr>
-                  <td onClick={click} id="DBTable">
+                  <td id="DBTable">
                     <GridComponent
-                      ref={(g) => (grid = g)}
+                      ref={gridRef}
                       id="MachineGrid"
                       toolbar={toolbar}
                       dataSource={AllMachineData}
@@ -446,7 +470,7 @@ const MachineDatabase = ({ machineData }) => {
                         {column.map((col, index) => {
                           const estimatedCharWidth = 10;
                           const basePadding = 20;
-                          const calculatedWidth = Math.max(col.headerText.length * estimatedCharWidth + basePadding, 100);
+                          const calculatedWidth = Math.max((col.headerText || "").length * estimatedCharWidth + basePadding, 100);
 
                           return (
                             <ColumnDirective
@@ -455,10 +479,11 @@ const MachineDatabase = ({ machineData }) => {
                               headerText={col.headerText}
                               textAlign="left"
                               width={calculatedWidth}
+                              visible={col.visible !== false}
+                              isPrimaryKey={col.isPrimaryKey || false}
                             />
                           );
                         })}
-
                       </ColumnsDirective>
                       <Inject services={[Toolbar, Filter, Sort, Group, ExcelExport]} />
                     </GridComponent>

@@ -3,7 +3,8 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 import "../../App.css";
 import { useParams, useHistory } from "react-router-dom";
 import LeftInputSection from "./LeftInputSection";
-import RightInputSection from "./RightInputSection";
+import PartsSection from "./PartsSection";
+import MoldCustomFields from "./MoldCustomFields";
 import BreadCrumb from "../CommonSections/BreadCrumb";
 
 const MoldDuplicate = () => {
@@ -24,38 +25,47 @@ const MoldDuplicate = () => {
     Req_Mold_Open_Stroke: "",
     Mold_Width: "",
     Number_of_Core_Pulls: "",
+    Is_Family_Mold: "No",
+    Number_of_Parts: 1,
   });
 
-  const [moldUnitData, setMoldUnitData] = useState({});
+  const [moldUnitData, setMoldUnitData] = useState({
+    Mold_No: { value: "", unit_id: "" },
+    Material_Id: { value: "", unit_id: "" },
+    Platen_Orientation: { value: "Horizontal", unit_id: "" },
+    Number_of_Bases: { value: "1", unit_id: "" },
+    Hot_Runner_Volume: { value: "", unit_id: 23 },
+    Cycle_Time: { value: "", unit_id: 3 },
+    Mold_Stack_Height: { value: "", unit_id: 10 },
+    Mold_Vertical_Height: { value: "", unit_id: 10 },
+    Req_Mold_Open_Stroke: { value: "", unit_id: 10 },
+    Mold_Width: { value: "", unit_id: 10 },
+    Number_of_Core_Pulls: { value: "", unit_id: "" },
+    Weight_of_one_Part: { value: "", unit_id: 8 },
+    Runner_Weight: { value: "", unit_id: 8 },
+    Part_Projected_Area: { value: "", unit_id: 1 },
+    Runner_Projected_Area: { value: "", unit_id: 1 },
+  });
 
-  // Unit settings array
-  const [StoredUnits] = useState([
-    { unit_id: 1, decimals: 0.12, unit_name: "sq cm" },
-    { unit_id: 2, decimals: 0.12, unit_name: "sq in" },
-    { unit_id: 3, decimals: 0, unit_name: "sec" },
-    { unit_id: 4, decimals: 0.1, unit_name: "min" },
-    { unit_id: 5, decimals: 0.12, unit_name: "hrs" },
-    { unit_id: 6, decimals: 0.1, unit_name: "mm/sec" },
-    { unit_id: 7, decimals: 0.12, unit_name: "inches/sec" },
-    { unit_id: 21, decimals: 0.12, unit_name: "rpm" },
-    { unit_id: 23, unit_name: "cm^3" },
-    { unit_id: 8, decimals: 0.12, unit_name: "Gms" },
-    { unit_id: 9, decimals: 0.12, unit_name: "oz" },
-    { unit_id: 18, unit_name: "US tons" },
-    { unit_id: 19, unit_name: "metric ton" },
-    { unit_id: 20, unit_name: "kN" },
-    { unit_id: 10, decimals: 0.12, unit_name: "mm" },
-    { unit_id: 11, decimals: 0.12, unit_name: "in" },
-    { unit_id: 22, decimals: 0.12, unit_name: "cm" },
-    { unit_id: 12, decimals: 0.12, unit_name: "MPa" },
-    { unit_id: 13, decimals: 0, unit_name: "psi" },
-    { unit_id: 14, decimals: 0, unit_name: "bar" },
-    { unit_id: 15, decimals: 0, unit_name: "kpsi" },
-    { unit_id: 16, decimals: 0, unit_name: "deg C" },
-    { unit_id: 17, decimals: 0, unit_name: "deg F" },
+  const [partColumn, setPartColumn] = useState(["Part1"]);
+  const [partData, setPartData] = useState([
+    { label: "Part Description", field: "Part_Description" },
+    { label: "Part Number *", field: "Part_Number" },
+    { label: "Number of Cavities *", field: "Number_of_Cavities" },
+    { label: "Starting Cavity Number *", field: "Starting_Cavity_Number" },
+    { label: "Weight of one Part", field: "Weight_of_one_Part", unitCategory: "Weight" },
+    { label: "Number Of Runners", field: "Number_of_Runners" },
+    { label: "Runner Weight", field: "Runner_Weight", unitCategory: "Weight" },
+    { label: "Part Projected Area", field: "Part_Projected_Area", unitCategory: "Area" },
+    { label: "Runner Projected Area", field: "Runner_Projected_Area", unitCategory: "Area" },
   ]);
 
-  // Base units organized by category
+  const [customFields, setCustomFields] = useState([
+    { name: "Ej Str Reqd", value: "" },
+    { name: "No of Mold WL", value: "" },
+    { name: "Mold Core Pull", value: "" },
+  ]);
+
   const [BaseUnitsArray] = useState({
     Area: [
       { unit_id: 1, decimals: 0.12, unit_name: "sq cm" },
@@ -66,42 +76,21 @@ const MoldDuplicate = () => {
       { unit_id: 4, decimals: 0.1, unit_name: "min" },
       { unit_id: 5, decimals: 0.12, unit_name: "hrs" },
     ],
-    Speed: [
-      { unit_id: 6, decimals: 0.1, unit_name: "mm/sec" },
-      { unit_id: 7, decimals: 0.12, unit_name: "inches/sec" },
-      { unit_id: 21, decimals: 0.12, unit_name: "rpm" },
-    ],
     Volume: [{ unit_id: 23, unit_name: "cm^3" }],
     Weight: [
       { unit_id: 8, decimals: 0.12, unit_name: "Gms" },
       { unit_id: 9, decimals: 0.12, unit_name: "oz" },
-    ],
-    Tonnage: [
-      { unit_id: 18, unit_name: "US tons" },
-      { unit_id: 19, unit_name: "metric ton" },
-      { unit_id: 20, unit_name: "kN" },
     ],
     Distance: [
       { unit_id: 10, decimals: 0.12, unit_name: "mm" },
       { unit_id: 11, decimals: 0.12, unit_name: "in" },
       { unit_id: 22, decimals: 0.12, unit_name: "cm" },
     ],
-    Pressure: [
-      { unit_id: 12, decimals: 0.12, unit_name: "MPa" },
-      { unit_id: 13, decimals: 0, unit_name: "psi" },
-      { unit_id: 14, decimals: 0, unit_name: "bar" },
-      { unit_id: 15, decimals: 0, unit_name: "kpsi" },
-    ],
-    Temperature: [
-      { unit_id: 16, decimals: 0, unit_name: "deg C" },
-      { unit_id: 17, decimals: 0, unit_name: "deg F" },
-    ],
   });
 
   const [ModalStates, setModalStates] = useState({
     MoldIdConfirm: { visibility: false, title: "Confirm Mold No", message: "Mold No is mandatory." },
     MoldIdUnique: { visibility: false, title: "Duplicate Mold No", message: "Mold No should be unique." },
-    ConvertConfirm: { visibility: false, title: "Confirm Unit Change", message: "You are changing the units, do you want to change the value accordingly?" },
   });
 
   const ToggleModalStates = (ModalKey) => {
@@ -118,12 +107,31 @@ const MoldDuplicate = () => {
       const mold = StoredMoldData.find((m) => m.id === decodedId);
 
       if (mold) {
-        setMoldData({ ...mold, Mold_No: "" }); // Clear Mold_No for duplicate
+        setMoldData({ ...mold, Mold_No: "", id: "" }); // Clear Mold_No for duplicate
+
+        if (mold.Parts && mold.Parts.length > 0) {
+          const newPartCols = mold.Parts.map((_, i) => `Part${i + 1}`);
+          setPartColumn(newPartCols);
+
+          const newPartData = partData.map(row => {
+            const updatedRow = { ...row };
+            mold.Parts.forEach((part, i) => {
+              updatedRow[`Part${i + 1}`] = part[row.field];
+            });
+            return updatedRow;
+          });
+          setPartData(newPartData);
+        }
+
+        if (mold.CustomFields) {
+          setCustomFields(mold.CustomFields);
+        }
+
         const unitData = {};
-        Object.keys(mold).forEach((key) => {
-          unitData[key] = { value: key === "Mold_No" ? "" : mold[key], unit_id: "" };
+        Object.keys(moldData).forEach((key) => {
+          unitData[key] = { value: key === "Mold_No" ? "" : mold[key] || "", unit_id: mold[`${key}_Unit`] || moldUnitData[key]?.unit_id || "" };
         });
-        setMoldUnitData(unitData);
+        setMoldUnitData(prev => ({ ...prev, ...unitData }));
       }
     }
   }, [RowId]);
@@ -131,15 +139,71 @@ const MoldDuplicate = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setMoldData({ ...moldData, [name]: value });
-    setMoldUnitData({ ...moldUnitData, [name]: { value: value, unit_id: "" } });
+    setMoldUnitData({ ...moldUnitData, [name]: { ...moldUnitData[name], value: value } });
+  };
+
+  const handleDropDownChange = (event, field, category) => {
+    const { value } = event.target;
+    setMoldUnitData({ ...moldUnitData, [field]: { ...moldUnitData[field], unit_id: value } });
+  };
+
+  const handleSetParts = () => {
+    const num = moldData.Number_of_Parts;
+    const newPartCols = Array.from({ length: num }, (_, i) => `Part${i + 1}`);
+    setPartColumn(newPartCols);
+
+    const newPartData = partData.map(row => {
+      const updatedRow = { ...row };
+      newPartCols.forEach(col => {
+        if (updatedRow[col] === undefined) updatedRow[col] = "";
+      });
+      return updatedRow;
+    });
+    setPartData(newPartData);
+  };
+
+  const handlePartDataChange = (rowIndex, colName, value) => {
+    const newData = [...partData];
+    newData[rowIndex][colName] = value;
+    setPartData(newData);
+  };
+
+  const handlePartUnitChange = (field, unitId, category) => {
+    setMoldUnitData({ ...moldUnitData, [field]: { ...moldUnitData[field], unit_id: unitId } });
+  };
+
+  const handleCustomFieldChange = (index, value) => {
+    const newFields = [...customFields];
+    newFields[index].value = value;
+    setCustomFields(newFields);
   };
 
   const SaveData = () => {
     const StoredMoldData = JSON.parse(sessionStorage.getItem("MoldData")) || [];
     const newId = StoredMoldData.length > 0 ? Math.max(...StoredMoldData.map(m => m.id)) + 1 : 1;
-    
-    const newMold = { ...moldData, id: newId };
-    StoredMoldData.push(newMold);
+
+    const finalParts = partColumn.map(col => {
+      const partObj = {};
+      partData.forEach(row => {
+        partObj[row.field] = row[col];
+      });
+      return partObj;
+    });
+
+    const finalMold = {
+      ...moldData,
+      id: newId,
+      Parts: finalParts,
+      CustomFields: customFields
+    };
+
+    Object.keys(moldUnitData).forEach(key => {
+      if (moldUnitData[key].unit_id) {
+        finalMold[`${key}_Unit`] = moldUnitData[key].unit_id;
+      }
+    });
+
+    StoredMoldData.push(finalMold);
     sessionStorage.setItem("MoldData", JSON.stringify(StoredMoldData));
 
     if (SamePage) {
@@ -205,22 +269,38 @@ const MoldDuplicate = () => {
               </div>
             </div>
 
-            <div className="d-flex col-md-12">
-              <div className="col-md-6">
-                <LeftInputSection 
-                  SelectedMoldUnitData={moldUnitData} 
-                  handleChange={handleChange} 
-                  StoredUnits={StoredUnits} 
+            <div className="d-flex col-md-12 p-0">
+              <div className="col-md-3">
+                <LeftInputSection
+                  SelectedMoldUnitData={moldUnitData}
+                  handleChange={handleChange}
+                  handleDropDownChange={handleDropDownChange}
                   BaseUnitsArray={BaseUnitsArray}
                   MaterialData={JSON.parse(sessionStorage.getItem("MaterialData")) || []}
+                  Page={"Duplicate"}
                 />
               </div>
-              <div className="col-md-6">
-                <RightInputSection 
-                  SelectedMoldUnitData={moldUnitData} 
-                  handleChange={handleChange} 
-                  StoredUnits={StoredUnits} 
-                  BaseUnitsArray={BaseUnitsArray} 
+              <div className="col-md-6 border-left border-right">
+                <PartsSection
+                  isFamilyMold={moldData.Is_Family_Mold}
+                  numberOfParts={moldData.Number_of_Parts}
+                  partData={partData}
+                  partColumn={partColumn}
+                  setIsFamilyMold={(val) => setMoldData({ ...moldData, Is_Family_Mold: val })}
+                  setNumberOfParts={(val) => setMoldData({ ...moldData, Number_of_Parts: val })}
+                  handlePartDataChange={handlePartDataChange}
+                  handleSetParts={handleSetParts}
+                  BaseUnitsArray={BaseUnitsArray}
+                  handlePartUnitChange={handlePartUnitChange}
+                  moldUnitData={moldUnitData}
+                  Page={"Duplicate"}
+                />
+              </div>
+              <div className="col-md-3">
+                <MoldCustomFields
+                  customFields={customFields}
+                  handleCustomFieldChange={handleCustomFieldChange}
+                  Page={"Duplicate"}
                 />
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   GridComponent,
   Inject,
@@ -17,12 +17,13 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 import "../../App.css";
 
 const MoldDatabase = ({ moldData }) => {
-  var grid;
+  const gridRef = useRef(null);
   const history = useHistory();
 
   const toolbar = ["Search", "ExcelExport"];
 
   const toolbarClick = (args) => {
+    const grid = gridRef.current;
     if (grid && args.item.id === 'MoldGrid_excelexport') {
       grid.showSpinner();
       grid.excelExport({ fileName: 'Mold Database Excel.xlsx' });
@@ -30,7 +31,10 @@ const MoldDatabase = ({ moldData }) => {
   };
 
   const excelExportComplete = () => {
-    grid.hideSpinner();
+    const grid = gridRef.current;
+    if (grid) {
+      grid.hideSpinner();
+    }
   };
 
   const pathN = () => {
@@ -75,14 +79,42 @@ const MoldDatabase = ({ moldData }) => {
 
   const selectionSettings = { type: "Single" };
 
-  const click = () => {
-    setSelectedRowIndexes({
-      rowIdx: grid.getSelectedRowIndexes(),
-      Mold_Id: grid.getSelectedRecords()[0]?.id,
-    });
+  const rowSelected = (args) => {
+    const grid = gridRef.current;
+    if (grid) {
+      setSelectedRowIndexes({
+        rowIdx: grid.getSelectedRowIndexes(),
+        Mold_Id: grid.getSelectedRecords()[0]?.id,
+      });
+
+      const targetRow = grid.getRowByIndex(args.rowIndex);
+      if (targetRow) {
+        targetRow.querySelectorAll('td').forEach(cell => {
+          cell.style.backgroundColor = 'lightblue';
+        });
+      }
+    }
+  };
+
+  const rowSelecting = (args) => {
+    const grid = gridRef.current;
+    if (grid) {
+      const PreviousRow = grid.getRowByIndex(args.previousRowIndex);
+      if (PreviousRow) {
+        PreviousRow.querySelectorAll('td').forEach(cell => {
+          cell.style.backgroundColor = '#e4eae1';
+        });
+      }
+    }
   };
 
   const [column] = useState([
+    {
+      field: "id",
+      headerText: "ID",
+      visible: false,
+      isPrimaryKey: true,
+    },
     {
       field: "Mold_No",
       headerText: "Mold No",
@@ -90,8 +122,8 @@ const MoldDatabase = ({ moldData }) => {
       textAlign: "left",
     },
     {
-      field: "Material_Name",
-      headerText: "Mat ID",
+      field: "Material_Id",
+      headerText: "Material ID",
       width: "90",
       textAlign: "left",
     },
@@ -104,6 +136,18 @@ const MoldDatabase = ({ moldData }) => {
     {
       field: "Number_of_Bases",
       headerText: "No.of Bases",
+      width: "90",
+      textAlign: "left",
+    },
+    {
+      field: "Is_Family_Mold",
+      headerText: "Family Mold",
+      width: "100",
+      textAlign: "left",
+    },
+    {
+      field: "Number_of_Parts",
+      headerText: "No. of Parts",
       width: "90",
       textAlign: "left",
     },
@@ -169,6 +213,7 @@ const MoldDatabase = ({ moldData }) => {
   };
 
   function created(args) {
+    const grid = gridRef.current;
     if (grid) {
       document
         .getElementById(grid.element.id + "_searchbar")
@@ -188,6 +233,16 @@ const MoldDatabase = ({ moldData }) => {
       setAllmoldData(updatedRows);
       sessionStorage.setItem("MoldData", JSON.stringify(updatedRows));
 
+      // Reset selection after delete
+      setSelectedRowIndexes({
+        rowIdx: "",
+        Mold_Id: "",
+      });
+
+      if (gridRef.current) {
+        gridRef.current.clearSelection();
+      }
+
       ToggleDeleteConfirm();
     } else {
       setSelectRowModal(!SelectRowModal);
@@ -197,7 +252,7 @@ const MoldDatabase = ({ moldData }) => {
   // Load data from sessionStorage on mount
   useEffect(() => {
     const storedData = JSON.parse(sessionStorage.getItem("MoldData")) || [];
-    
+
     // If no stored data, add sample data
     if (storedData.length === 0) {
       const sampleData = [
@@ -251,25 +306,6 @@ const MoldDatabase = ({ moldData }) => {
 
   const calculateGridWidth = (columns) => `${columns.length * 160}px`;
 
-  const rowSelecting = (args) => {
-    const PreviousCell = document.querySelector(`#MoldGrid tr[data-rowindex="${args.previousRowIndex}"]`);
-
-    if (PreviousCell) {
-      PreviousCell.querySelectorAll('td').forEach(cell => {
-        cell.style.backgroundColor = '#e4eae1';
-      });
-    }
-  }
-
-  const rowSelected = (args) => {
-    const targetRow = document.querySelector(`#MoldGrid tr[data-rowindex="${args.rowIndex}"]`);
-
-    if (targetRow) {
-      targetRow.querySelectorAll('td').forEach(cell => {
-        cell.style.backgroundColor = 'lightblue';
-      });
-    }
-  };
 
   const filterSettings = { type: 'Excel' };
 
@@ -360,10 +396,10 @@ const MoldDatabase = ({ moldData }) => {
           <table className="table">
             <tbody>
               <tr>
-                <td onClick={click}>
+                <td>
                   <GridComponent
                     id="MoldGrid"
-                    ref={(g) => (grid = g)}
+                    ref={gridRef}
                     toolbar={toolbar}
                     dataSource={AllmoldData}
                     width={calculateGridWidth(column)}
@@ -384,7 +420,7 @@ const MoldDatabase = ({ moldData }) => {
                       {column.map((col, index) => {
                         const estimatedCharWidth = 10;
                         const basePadding = 20;
-                        const calculatedWidth = Math.max(col.headerText.length * estimatedCharWidth + basePadding, 100);
+                        const calculatedWidth = Math.max((col.headerText || "").length * estimatedCharWidth + basePadding, 100);
 
                         return (
                           <ColumnDirective
@@ -393,6 +429,8 @@ const MoldDatabase = ({ moldData }) => {
                             headerText={col.headerText}
                             textAlign="left"
                             width={calculatedWidth}
+                            visible={col.visible !== false}
+                            isPrimaryKey={col.isPrimaryKey || false}
                           />
                         );
                       })}

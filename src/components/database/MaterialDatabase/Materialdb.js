@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   GridComponent,
   Inject,
@@ -18,7 +18,8 @@ import "../../App.css";
 import '../database.css'
 
 const MaterialDatabase = ({ materialData }) => {
-  var grid;
+  const gridRef = useRef(null);
+
   const history = useHistory();
 
   const toolbar = ["Search", "ExcelExport"];
@@ -31,6 +32,12 @@ const MaterialDatabase = ({ materialData }) => {
   });
 
   const [column] = useState([
+    {
+      field: "id",
+      headerText: "ID",
+      visible: false,
+      isPrimaryKey: true,
+    },
     {
       field: "Material_Id",
       headerText: "Material ID",
@@ -152,11 +159,33 @@ const MaterialDatabase = ({ materialData }) => {
 
   const selectionSettings = { type: "Single" };
 
-  const click = () => {
-    setSelectedRowIndexes({
-      rowIdx: grid.getSelectedRowIndexes(),
-      Material_Id: grid.getSelectedRecords()[0]?.id,
-    });
+  const rowSelected = (args) => {
+    const grid = gridRef.current;
+    if (grid) {
+      setSelectedRowIndexes({
+        rowIdx: grid.getSelectedRowIndexes(),
+        Material_Id: grid.getSelectedRecords()[0]?.id,
+      });
+
+      const targetRow = grid.getRowByIndex(args.rowIndex);
+      if (targetRow) {
+        targetRow.querySelectorAll('td').forEach(cell => {
+          cell.style.backgroundColor = 'lightblue';
+        });
+      }
+    }
+  };
+
+  const rowSelecting = (args) => {
+    const grid = gridRef.current;
+    if (grid) {
+      const PreviousRow = grid.getRowByIndex(args.previousRowIndex);
+      if (PreviousRow) {
+        PreviousRow.querySelectorAll('td').forEach(cell => {
+          cell.style.backgroundColor = '#e4eae1';
+        });
+      }
+    }
   };
 
   const [DeleteConfirm, setDeleteConfirm] = useState(false);
@@ -177,12 +206,12 @@ const MaterialDatabase = ({ materialData }) => {
   };
 
   function created(args) {
+    const grid = gridRef.current;
     if (grid) {
       document
         .getElementById(grid.element.id + "_searchbar")
         .addEventListener("keyup", (args) => {
-          var gridObj =
-            document.getElementById("MaterialGrid").ej2_instances[0];
+          const gridObj = document.getElementById("MaterialGrid").ej2_instances[0];
           gridObj.search(args.target.value);
         });
     }
@@ -197,6 +226,12 @@ const MaterialDatabase = ({ materialData }) => {
       setAllMaterialData(updatedRows);
       sessionStorage.setItem("MaterialData", JSON.stringify(updatedRows));
 
+      // Reset selection after delete
+      setSelectedRowIndexes({
+        rowIdx: "",
+        Material_Id: "",
+      });
+
       ToggleDeleteConfirm();
     } else {
       setSelectRowModal(!SelectRowModal);
@@ -206,7 +241,7 @@ const MaterialDatabase = ({ materialData }) => {
   // Load data from sessionStorage on mount
   useEffect(() => {
     const storedData = JSON.parse(sessionStorage.getItem("MaterialData")) || [];
-    
+
     // If no stored data, add sample data
     if (storedData.length === 0) {
       const sampleData = [
@@ -266,27 +301,9 @@ const MaterialDatabase = ({ materialData }) => {
 
   const calculateGridWidth = (columns) => `${columns.length * 160}px`;
 
-  const rowSelecting = (args) => {
-    const PreviousCell = document.querySelector(`#MaterialGrid tr[data-rowindex="${args.previousRowIndex}"]`);
-
-    if (PreviousCell) {
-      PreviousCell.querySelectorAll('td').forEach(cell => {
-        cell.style.backgroundColor = '#fff';
-      });
-    }
-  }
-
-  const rowSelected = (args) => {
-    const targetRow = document.querySelector(`#MaterialGrid tr[data-rowindex="${args.rowIndex}"]`);
-
-    if (targetRow) {
-      targetRow.querySelectorAll('td').forEach(cell => {
-        cell.style.backgroundColor = 'lightblue';
-      });
-    }
-  };
 
   const toolbarClick = (args) => {
+    const grid = gridRef.current;
     if (grid && args.item.id === 'MaterialGrid_excelexport') {
       grid.showSpinner();
       grid.excelExport({ fileName: 'Material Database Excel.xlsx' });
@@ -294,7 +311,10 @@ const MaterialDatabase = ({ materialData }) => {
   };
 
   const excelExportComplete = () => {
-    grid.hideSpinner();
+    const grid = gridRef.current;
+    if (grid) {
+      grid.hideSpinner();
+    }
   };
 
   const filterSettings = { type: 'Excel' };
@@ -385,9 +405,9 @@ const MaterialDatabase = ({ materialData }) => {
           <table className="table">
             <tbody>
               <tr>
-                <td onClick={click} id="DBTable">
+                <td id="DBTable">
                   <GridComponent
-                    ref={(g) => (grid = g)}
+                    ref={gridRef}
                     id="MaterialGrid"
                     toolbar={toolbar}
                     dataSource={AllMaterialData}
@@ -411,7 +431,7 @@ const MaterialDatabase = ({ materialData }) => {
                       {column.map((col, index) => {
                         const estimatedCharWidth = 10;
                         const basePadding = 20;
-                        const calculatedWidth = Math.max(col.headerText.length * estimatedCharWidth + basePadding, 100);
+                        const calculatedWidth = Math.max((col.headerText || "").length * estimatedCharWidth + basePadding, 100);
 
                         return (
                           <ColumnDirective
@@ -420,6 +440,8 @@ const MaterialDatabase = ({ materialData }) => {
                             headerText={col.headerText}
                             textAlign="left"
                             width={calculatedWidth}
+                            visible={col.visible !== false}
+                            isPrimaryKey={col.isPrimaryKey || false}
                           />
                         );
                       })}
@@ -430,7 +452,7 @@ const MaterialDatabase = ({ materialData }) => {
             </tbody>
           </table>
         </div>
-      </div>
+      </div >
     </>
   );
 };

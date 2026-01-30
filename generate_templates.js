@@ -21,13 +21,15 @@ const createTemplate = (filename, headers) => {
         data.push([]);
     }
     data.push(headers);
-    // Add a sample row (optional) or just empty rows for user to fill
-    data.push([]);
+    // Add a few empty rows for user to fill
+    for (let i = 0; i < 5; i++) {
+        data.push([]);
+    }
 
     const ws = XLSX.utils.aoa_to_sheet(data);
 
     // Set column widths for better visibility
-    const wscols = headers.map(h => ({ wch: h.length + 5 }));
+    const wscols = headers.map(h => ({ wch: Math.max(h.length + 2, 12) }));
     ws['!cols'] = wscols;
 
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
@@ -62,24 +64,45 @@ const machineHeaders = [
 ];
 
 // Mold Database Headers
-// Based on ImportMold.js parsing logic
+// Based on ImportMold.js parsing logic with dynamic parts support
 const moldHeaders = [
-    "Mold No",
-    "Material Name",
+    // Mold Details (11 columns)
+    "Mold Number",
+    "Material ID",
     "Platen Orientation",
     "Number of Bases",
+    "Hot Runner Volume",
     "Cycle Time",
     "Mold Stack Height",
     "Mold Vertical Height",
+    "Req Mold Open Stroke",
     "Mold Width",
     "Number of Core Pulls",
-    "Hot Runner Volume",
-    "Req Mold Open Stroke"
+    // Part 1 (9 columns)
+    "Part Description",
+    "Part Number",
+    "No Of Cavities",
+    "Starting Cavity Number",
+    "Weight of one Part",
+    "Number of Runners",
+    "Runner Weight",
+    "Part Projected Area",
+    "Runner Projected Area",
+    // Part 2 (9 columns)
+    "Part Description",
+    "Part Number",
+    "No Of Cavities",
+    "Starting Cavity Number",
+    "Weight of one Part",
+    "Number of Runners",
+    "Runner Weight",
+    "Part Projected Area",
+    "Runner Projected Area"
 ];
 
 try {
-    createTemplate('Machine_DB.xltx', machineHeaders);
-    createTemplate('Mold_DB.xltx', moldHeaders);
+    createTemplate('Machine_DB.xlsx', machineHeaders);
+    createTemplate('Mold_DB.xlsx', moldHeaders);
     console.log("Templates generated successfully.");
 } catch (error) {
     console.error("Error generating templates:", error);

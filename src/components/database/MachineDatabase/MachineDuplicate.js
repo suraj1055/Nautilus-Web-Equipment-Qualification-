@@ -42,7 +42,7 @@ const MachineDuplicate = () => {
   });
 
   // Default unit settings for temperature calculations
-  const [UnitSettings] = useState([ 
+  const [UnitSettings] = useState([
     {
       "unit_id": 1,
       "decimals": 0.12,

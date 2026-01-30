@@ -1,6 +1,6 @@
 import React from "react";
 
-const ButtonSection = ({ SubmitData, history, SamePage, setSamePage, Page}) => {
+const ButtonSection = ({ SubmitData, history, SamePage, setSamePage, Page }) => {
   return (
     <div>
       <div className="d-flex col-md-12">

@@ -27,7 +27,7 @@ const ImportMachine = () => {
     const history = useHistory();
 
     const hasImportResults =
-        showStatusColumns && gridData.some((r) => r.Resul === "Success" || r.Resul === "Imported" || r.Resul === "Error" || r.Resul === "Pending");
+        showStatusColumns && gridData.some((r) => r.Resul === "Error" || r.Resul === "Pending");
 
     const resultTemplate = (props) => {
         if (props.Resul === "Error" || props.Resul === "Fail") {
@@ -254,6 +254,15 @@ const ImportMachine = () => {
 
     const handleRemoveImportedRows = () => {
         if (!gridData || gridData.length === 0) return;
+
+        const hasImportedRows = gridData.some((row) => row.Resul === "Success" || row.Resul === "Imported");
+        if (!hasImportedRows) {
+            toast.info("No imported rows to remove.");
+            return;
+        }
+
+        const confirmed = window.confirm("Imported records will be removed. You can continue editing the incorrect data.");
+        if (!confirmed) return;
 
         const keptRows = gridData.filter((row) => row.Resul !== "Success" && row.Resul !== "Imported");
         const removedCount = gridData.length - keptRows.length;

@@ -27,7 +27,7 @@ const ImportMaterial = () => {
     const history = useHistory();
 
     const hasImportResults =
-        showStatusColumns && gridData.some((r) => r.result === "Success" || r.result === "Imported" || r.result === "Error" || r.result === "Pending");
+        showStatusColumns && gridData.some((r) => r.result === "Error" || r.result === "Pending");
 
     const resultTemplate = (props) => {
         if (props.result === "Error" || props.result === "Fail") {
@@ -245,6 +245,15 @@ const ImportMaterial = () => {
 
     const handleRemoveImportedRows = () => {
         if (!gridData || gridData.length === 0) return;
+
+        const hasImportedRows = gridData.some((row) => row.result === "Success" || row.result === "Imported");
+        if (!hasImportedRows) {
+            toast.info("No imported rows to remove.");
+            return;
+        }
+
+        const confirmed = window.confirm("Imported records will be removed. You can continue editing the incorrect data.");
+        if (!confirmed) return;
 
         // Remove only successfully imported rows from the TEMP grid data.
         // Keep Error/Pending (and any non-success statuses) so user can edit + re-import.
